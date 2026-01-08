@@ -1,29 +1,78 @@
-[gd_scene load_steps=5 format=3 uid="uid://85exsmkgpm54"]
+[gd_scene load_steps=10 format=3 uid="uid://85exsmkgpm54"]
 
 [ext_resource type="Script" uid="uid://s5eslbr0a0uq" path="res://Scripts/Player.gd" id="1_kyqiw"]
-[ext_resource type="Texture2D" uid="uid://wrn228dxyiv" path="res://icon.svg" id="2_gntrk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pxmn"]
-size = Vector2(64, 64)
+[ext_resource type="Texture2D" uid="uid://67apusl2og8h" path="res://Assets/PNG/Players.png" id="2_kyqiw"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kyqiw"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:moving")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gntrk"]
+atlas = ExtResource("2_kyqiw")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dewec"]
+atlas = ExtResource("2_kyqiw")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ixxa"]
+atlas = ExtResource("2_kyqiw")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nn08x"]
+atlas = ExtResource("2_kyqiw")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_52ee3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gntrk")
+}],
+"loop": true,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dewec")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ixxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nn08x")
+}],
+"loop": true,
+"name": &"Running",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pxmn"]
+size = Vector2(7, 14)
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(367, 299)
+scale = Vector2(2, 2)
 script = ExtResource("1_kyqiw")
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-32, -32)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_gntrk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-32, -32)
-shape = SubResource("RectangleShape2D_1pxmn")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_kyqiw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_52ee3")
+animation = &"Running"
+autoplay = "Running"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 5)
+shape = SubResource("RectangleShape2D_1pxmn")
+disabled = true
