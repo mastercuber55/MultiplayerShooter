@@ -13,12 +13,19 @@ config_version=5
 config/name="MultiplayerShooter"
 run/main_scene="uid://b6ykw5y5yu8fl"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=480
+window/stretch/mode="viewport"
+window/use_filter=true
+window/fullsize=true
+window/show_image=true
 
 [input]
 
@@ -52,3 +59,4 @@ MoveDown={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

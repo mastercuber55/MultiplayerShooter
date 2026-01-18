@@ -1,0 +1,188 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmtj47i6vahso"]
+
+[ext_resource type="Script" uid="uid://ddklq8d63tcb4" path="res://Scripts/MultiplayerMenu.gd" id="1_aq5bb"]
+[ext_resource type="Texture2D" uid="uid://mwvsusjeu8je" path="res://Assets/PNG/Interface.png" id="1_qnp2s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yde4u"]
+atlas = ExtResource("1_qnp2s")
+region = Rect2(112, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5lgv"]
+atlas = ExtResource("1_qnp2s")
+region = Rect2(112, 64, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnp2s"]
+atlas = ExtResource("1_qnp2s")
+region = Rect2(112, 66, 48, 14)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnp2s"]
+
+[node name="Multiplayer Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aq5bb")
+
+[node name="Hosting Group" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -193.0
+offset_top = -137.0
+offset_right = -14.0
+offset_bottom = -1.0
+texture = ExtResource("1_qnp2s")
+region_rect = Rect2(96, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+metadata/_edit_group_ = true
+
+[node name="Create Server" type="TextureButton" parent="Hosting Group"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = 3.5
+offset_right = 75.5
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_yde4u")
+texture_pressed = SubResource("AtlasTexture_r5lgv")
+stretch_mode = 4
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Hosting Group/Create Server"]
+layout_mode = 0
+offset_top = 0.5
+offset_right = 152.0
+offset_bottom = 41.5
+text = "Create Server"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Server Name" type="TextureRect" parent="Hosting Group"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 16.0
+offset_right = 165.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_qnp2s")
+metadata/_edit_group_ = true
+
+[node name="LineEdit" type="LineEdit" parent="Hosting Group/Server Name"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 141.0
+offset_bottom = 39.0
+placeholder_text = "Server Name"
+alignment = 1
+flat = true
+
+[node name="Joining Group" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -193.0
+offset_top = 9.0
+offset_right = -14.0
+offset_bottom = 145.0
+texture = ExtResource("1_qnp2s")
+region_rect = Rect2(96, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+metadata/_edit_group_ = true
+
+[node name="Discover Server" type="TextureButton" parent="Joining Group"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -53.0
+offset_right = 75.5
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_yde4u")
+texture_pressed = SubResource("AtlasTexture_r5lgv")
+stretch_mode = 4
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Joining Group/Discover Server"]
+layout_mode = 0
+offset_top = 0.5
+offset_right = 152.0
+offset_bottom = 41.5
+text = "Discover Server"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Join Server" type="TextureButton" parent="Joining Group"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = 3.5
+offset_right = 75.5
+offset_bottom = 54.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_yde4u")
+texture_pressed = SubResource("AtlasTexture_r5lgv")
+stretch_mode = 4
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Joining Group/Join Server"]
+layout_mode = 0
+offset_top = 0.5
+offset_right = 152.0
+offset_bottom = 41.5
+text = "Join Server"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Servers Display" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -137.0
+offset_right = 210.0
+offset_bottom = 145.0
+texture = ExtResource("1_qnp2s")
+region_rect = Rect2(96, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Servers Display"]
+layout_mode = 0
+offset_right = 216.0
+offset_bottom = 282.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Servers List" type="ItemList" parent="Servers Display/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qnp2s")
+
+[connection signal="pressed" from="Hosting Group/Create Server" to="." method="_on_create_server_pressed"]
+[connection signal="pressed" from="Joining Group/Discover Server" to="." method="_on_discover_servers_pressed"]
+[connection signal="pressed" from="Joining Group/Join Server" to="." method="_on_join_button_pressed"]

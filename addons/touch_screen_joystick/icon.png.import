@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct65mgn332epf"
-path="res://.godot/imported/node_tunnel_demo_sprite.png-a658bfb367cf526a7313a53de4dd2fef.ctex"
+uid="uid://crqhko30gbu0s"
+path="res://.godot/imported/icon.png-9855c8f44a6b30349331b2a290379bbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/nodetunnel/demo/player/node_tunnel_demo_sprite.png"
-dest_files=["res://.godot/imported/node_tunnel_demo_sprite.png-a658bfb367cf526a7313a53de4dd2fef.ctex"]
+source_file="res://addons/touch_screen_joystick/icon.png"
+dest_files=["res://.godot/imported/icon.png-9855c8f44a6b30349331b2a290379bbb.ctex"]
 
 [params]
 
