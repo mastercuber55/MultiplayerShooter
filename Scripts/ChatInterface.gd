@@ -1,4 +1,7 @@
 extends Control
+class_name ChatInterface
+
+signal message_recieved(senderID: int, message: String)
 
 # Initialized by SceneGame
 var own_name : String
@@ -17,8 +20,12 @@ func _on_send_button_pressed() -> void:
 
 @rpc("any_peer", "call_local")
 func add_message(sender: String, message: String) -> void:
+	
+	var senderID := multiplayer.get_remote_sender_id()
+	
 	display.text += str(sender, ":", message, "\n")
 	display.scroll_vertical = INF
+	message_recieved.emit(senderID, message)
 
 func update_name(old_own_name: String, new_own_name: String) -> void:
 	rpc("add_message", "System", str(old_own_name, " changed their name to ", new_own_name))

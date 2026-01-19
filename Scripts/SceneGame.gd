@@ -8,7 +8,7 @@ var own_name : String
 @export var playerScene: PackedScene
 @onready var multiplayer_menu: MultiplayerMenu = $"CanvasLayer/Multiplayer Menu"
 @onready var touch_screen_joystick: TouchScreenJoystick = $CanvasLayer/TouchScreenJoystick
-@onready var chat_interface: Control = $CanvasLayer/ChatInterface
+@onready var chat_interface: ChatInterface = $CanvasLayer/ChatInterface
 
 func _ready() -> void:
 	
@@ -25,6 +25,8 @@ func _ready() -> void:
 			chat_interface.own_name = val
 			own_name = val
 	)
+	
+	chat_interface.message_recieved.connect(_message_recieved)
 	
 func create_server() -> void:	
 	peer.create_server(GAME_PORT)
@@ -58,13 +60,17 @@ func join_server(ip: String) -> void:
 
 @rpc("any_peer", "call_remote", "reliable")
 func send_player_data(nickname: String) -> void:
-	var sender_id := multiplayer.get_remote_sender_id()
-	add_player(sender_id, nickname)
+	var senderID := multiplayer.get_remote_sender_id()
+	add_player(senderID, nickname)
 
-func add_player(id : Variant, nickname: String) -> void:
+func _message_recieved(senderID: int, message: String) -> void:
+	var player := get_node_or_null(str(senderID))
+	if player:
+		player.set_message(message)
+
+func add_player(id : int, nickname: String) -> void:
 	var pos := get_viewport_rect().size / 2
 	$MultiplayerSpawner.spawn({ "id": id, "pos": pos, "nickname": nickname })
-	
 	
 func _spawnPlayer(data):
 	var player = playerScene.instantiate()

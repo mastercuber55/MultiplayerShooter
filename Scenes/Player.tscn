@@ -84,19 +84,25 @@ autoplay = "Running"
 position = Vector2(0.5, 5)
 shape = SubResource("CircleShape2D_kyqiw")
 
-[node name="Nickname" type="Label" parent="."]
+[node name="overhead tag" type="Label" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -38.0
-offset_top = -20.0
-offset_right = 37.5
-offset_bottom = -6.0
+offset_left = -84.0
+offset_top = -23.5
+offset_right = 84.5
+offset_bottom = -9.5
 grow_horizontal = 2
 grow_vertical = 0
-text = "Nickname"
+mouse_default_cursor_shape = 3
 label_settings = SubResource("LabelSettings_kyqiw")
 horizontal_alignment = 1
 clip_text = true
+
+[node name="tooltip" type="Container" parent="."]
+offset_left = -10.0
+offset_top = -6.0
+offset_right = 11.0
+offset_bottom = 12.0
