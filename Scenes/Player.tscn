@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://85exsmkgpm54"]
+[gd_scene load_steps=12 format=3 uid="uid://85exsmkgpm54"]
 
 [ext_resource type="Script" uid="uid://s5eslbr0a0uq" path="res://Scripts/Player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://67apusl2og8h" path="res://Assets/PNG/Players.png" id="2_kyqiw"]
@@ -63,9 +63,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kyqiw"]
 radius = 7.071068
 
+[sub_resource type="SystemFont" id="SystemFont_kyqiw"]
+font_names = PackedStringArray("Monocraft")
+multichannel_signed_distance_field = true
+
 [sub_resource type="LabelSettings" id="LabelSettings_kyqiw"]
-font_size = 10
-outline_size = 4
+font = SubResource("SystemFont_kyqiw")
+font_size = 8
+outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D"]
@@ -90,16 +95,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -84.0
-offset_top = -23.5
-offset_right = 84.5
+offset_left = -40.5
+offset_top = -72.0
+offset_right = 41.0
 offset_bottom = -9.5
 grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 3
+text = "I'm Coool"
 label_settings = SubResource("LabelSettings_kyqiw")
 horizontal_alignment = 1
-clip_text = true
+vertical_alignment = 2
+autowrap_mode = 1
+text_overrun_behavior = 1
 
 [node name="tooltip" type="Container" parent="."]
 offset_left = -10.0

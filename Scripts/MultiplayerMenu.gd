@@ -58,15 +58,33 @@ func handle_client_process() -> void:
 			var idx = servers_list.add_item(server_name)
 			servers_list.set_item_metadata(idx, ip)
 
+var text_input_is_empty_func_tweens : Dictionary = {}
+var text_input_is_empty_func_placeholders : Dictionary = {}
 func text_input_is_empty(input: LineEdit) -> bool:
-	if not input.text.is_empty():
+	if not input.text.strip_edges().is_empty():
 		return false	
 	
-	var old := input.placeholder_text
-	input.placeholder_text = old.to_upper()
+	if not text_input_is_empty_func_placeholders.has(input):
+		text_input_is_empty_func_placeholders[input] = input.placeholder_text
 	
-	get_tree().create_timer(1.0).timeout.connect(
-		func(): input.placeholder_text = old
+	var tween : Tween = text_input_is_empty_func_tweens.get(input)
+	
+	if tween and tween.is_valid():
+		tween.kill()
+
+	tween = create_tween()
+	text_input_is_empty_func_tweens[input] = tween
+	
+	input.placeholder_text = input.placeholder_text.to_upper()
+	
+	tween.tween_interval(1.0)
+	tween.tween_callback(
+		func(): 
+			if not is_instance_valid(input):
+				return
+			input.placeholder_text = text_input_is_empty_func_placeholders.get(input)
+			text_input_is_empty_func_tweens.erase(input)
+			text_input_is_empty_func_placeholders.erase(input)
 	)
 	
 	return true
