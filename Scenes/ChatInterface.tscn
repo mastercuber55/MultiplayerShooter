@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://8cd65581figp"]
+
+[ext_resource type="Script" uid="uid://p53x3i582y0d" path="res://Scripts/ChatInterface.gd" id="1_uip5s"]
+
+[node name="ChatInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uip5s")
+
+[node name="Display" type="TextEdit" parent="."]
+layout_mode = 0
+offset_top = 321.0
+offset_right = 237.0
+offset_bottom = 449.0
+editable = false
+
+[node name="Input" type="LineEdit" parent="."]
+layout_mode = 0
+offset_top = 449.0
+offset_right = 207.0
+offset_bottom = 480.0
+
+[node name="Send Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 449.0
+offset_right = 237.0
+offset_bottom = 480.0
+text = ">"
+
+[connection signal="pressed" from="Send Button" to="." method="_on_send_button_pressed"]

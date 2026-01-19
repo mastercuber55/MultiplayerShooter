@@ -7,11 +7,13 @@ var peer = ENetMultiplayerPeer.new()
 @export var playerScene: PackedScene
 @onready var multiplayer_menu: MultiplayerMenu = $"CanvasLayer/Multiplayer Menu"
 @onready var touch_screen_joystick: TouchScreenJoystick = $CanvasLayer/TouchScreenJoystick
+@onready var chat_interface: Control = $CanvasLayer/ChatInterface
 
 
 func _ready() -> void:
 	
 	touch_screen_joystick.visible = DisplayServer.is_touchscreen_available()
+	chat_interface.hide()
 	
 	$MultiplayerSpawner.spawn_function = _spawnPlayer
 	
@@ -25,6 +27,7 @@ func create_server() -> void:
 	multiplayer.peer_connected.connect(_add_player)
 	
 	multiplayer_menu.hide()
+	chat_interface.show()
 	
 	_add_player()
 
@@ -39,6 +42,7 @@ func join_server(ip: String) -> void:
 		func():
 			print("Connected to server")
 			multiplayer_menu.hide()
+			chat_interface.show()
 	)
 	
 	multiplayer.connection_failed.connect(
