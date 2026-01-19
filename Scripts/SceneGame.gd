@@ -3,12 +3,12 @@ extends Node2D
 const GAME_PORT = 5555
 
 var peer = ENetMultiplayerPeer.new()
+var own_name : String
 
 @export var playerScene: PackedScene
 @onready var multiplayer_menu: MultiplayerMenu = $"CanvasLayer/Multiplayer Menu"
 @onready var touch_screen_joystick: TouchScreenJoystick = $CanvasLayer/TouchScreenJoystick
 @onready var chat_interface: Control = $CanvasLayer/ChatInterface
-
 
 func _ready() -> void:
 	
@@ -19,17 +19,22 @@ func _ready() -> void:
 	
 	multiplayer_menu.create_server_in_scene_game.connect(create_server)
 	multiplayer_menu.join_server_in_scene_game.connect(join_server)
-
-
+	
+	multiplayer_menu.set_name_in_scene_game.connect(
+		func(val):
+			chat_interface.own_name = val
+			own_name = val
+	)
+	
 func create_server() -> void:	
 	peer.create_server(GAME_PORT)
 	multiplayer.multiplayer_peer = peer
-	multiplayer.peer_connected.connect(_add_player)
+	#multiplayer.peer_connected.connect(_add_player)
 	
 	multiplayer_menu.hide()
 	chat_interface.show()
 	
-	_add_player()
+	add_player(1, own_name)
 
 
 func join_server(ip: String) -> void:
@@ -41,6 +46,7 @@ func join_server(ip: String) -> void:
 	multiplayer.connected_to_server.connect(
 		func():
 			print("Connected to server")
+			rpc_id(1, "send_player_data", own_name)
 			multiplayer_menu.hide()
 			chat_interface.show()
 	)
@@ -50,14 +56,19 @@ func join_server(ip: String) -> void:
 			print("Connection failed bro")
 	)
 
+@rpc("any_peer", "call_remote", "reliable")
+func send_player_data(nickname: String) -> void:
+	var sender_id := multiplayer.get_remote_sender_id()
+	add_player(sender_id, nickname)
 
-func _add_player(id = 1):
+func add_player(id : Variant, nickname: String) -> void:
 	var pos := get_viewport_rect().size / 2
-	$MultiplayerSpawner.spawn({ "id": id, "pos": pos })
+	$MultiplayerSpawner.spawn({ "id": id, "pos": pos, "nickname": nickname })
 	
 	
 func _spawnPlayer(data):
 	var player = playerScene.instantiate()
 	player.name = str(data.id)
+	player.nickname = data.nickname
 	player.position = data.pos
 	return player

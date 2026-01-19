@@ -6,11 +6,16 @@ const SPEED = 200.0
 @export var moving := false
 @export var SyncPos := Vector2.ZERO
 
+var nickname : String
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int())
 	if not is_multiplayer_authority():
 		$CollisionShape2D.disabled = true
 
+func _ready() -> void:
+	$Nickname.text = nickname
+	
 func _physics_process(_delta: float) -> void:
 	if is_multiplayer_authority():
 		velocity = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown") * SPEED

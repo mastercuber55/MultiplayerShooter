@@ -1,6 +1,7 @@
 extends Control
 
-var own_name : String = str(randf())
+# Initialized by SceneGame
+var own_name : String
 
 @onready var display: TextEdit = $Display
 @onready var input: LineEdit = $Input

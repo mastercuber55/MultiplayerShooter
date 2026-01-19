@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://85exsmkgpm54"]
+[gd_scene load_steps=11 format=3 uid="uid://85exsmkgpm54"]
 
 [ext_resource type="Script" uid="uid://s5eslbr0a0uq" path="res://Scripts/Player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://67apusl2og8h" path="res://Assets/PNG/Players.png" id="2_kyqiw"]
@@ -63,6 +63,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kyqiw"]
 radius = 7.071068
 
+[sub_resource type="LabelSettings" id="LabelSettings_kyqiw"]
+font_size = 10
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_kyqiw")
@@ -78,3 +83,20 @@ autoplay = "Running"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 5)
 shape = SubResource("CircleShape2D_kyqiw")
+
+[node name="Nickname" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = -20.0
+offset_right = 37.5
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Nickname"
+label_settings = SubResource("LabelSettings_kyqiw")
+horizontal_alignment = 1
+clip_text = true

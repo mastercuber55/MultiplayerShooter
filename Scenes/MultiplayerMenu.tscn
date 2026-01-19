@@ -40,7 +40,6 @@ patch_margin_left = 16
 patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
-metadata/_edit_group_ = true
 
 [node name="Create Server" type="TextureButton" parent="Hosting Group"]
 layout_mode = 1
@@ -159,7 +158,7 @@ vertical_alignment = 1
 [node name="Servers Display" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_left = -6.0
-offset_top = -137.0
+offset_top = -65.0
 offset_right = 210.0
 offset_bottom = 145.0
 texture = ExtResource("1_qnp2s")
@@ -173,7 +172,7 @@ metadata/_edit_group_ = true
 [node name="MarginContainer" type="MarginContainer" parent="Servers Display"]
 layout_mode = 0
 offset_right = 216.0
-offset_bottom = 282.0
+offset_bottom = 210.0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -182,6 +181,38 @@ theme_override_constants/margin_bottom = 16
 [node name="Servers List" type="ItemList" parent="Servers Display/MarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qnp2s")
+
+[node name="Name Selector" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = -6.0
+offset_top = -137.0
+offset_right = 210.0
+offset_bottom = -73.0
+texture = ExtResource("1_qnp2s")
+region_rect = Rect2(96, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+metadata/_edit_group_ = true
+
+[node name="Player Name" type="TextureRect" parent="Name Selector"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 53.0
+texture = SubResource("AtlasTexture_qnp2s")
+
+[node name="LineEdit" type="LineEdit" parent="Name Selector/Player Name"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 172.0
+offset_bottom = 39.0
+placeholder_text = "Nickname"
+alignment = 1
+flat = true
 
 [connection signal="pressed" from="Hosting Group/Create Server" to="." method="_on_create_server_pressed"]
 [connection signal="pressed" from="Joining Group/Discover Server" to="." method="_on_discover_servers_pressed"]
